@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Kalkulator CC Motor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #8b5cf6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --light: #f8fafc;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Background pattern */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Home Link */
+    .home-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--card-bg);
+      color: var(--primary);
+      text-decoration: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+      font-size: 0.95rem;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .home-link:hover {
+      background: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .home-link i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* Card */
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 35px;
+      max-width: 500px;
+      width: 100%;
+      margin: 20px 0;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Card Header */
+    .card-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .card-header h1 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .card-header p {
+      font-size: 1rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* Input Group */
+    .input-group {
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .input-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .info-icon {
+      margin-left: 6px;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .info-icon:hover {
+      color: var(--primary-dark);
+    }
+
+    .tooltip {
+      position: absolute;
+      background: var(--dark);
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      width: 220px;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      top: 28px;
+      left: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .tooltip::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 15px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid var(--dark);
+    }
+
+    .input-group:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      background: #fff;
+      color: var(--dark);
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .input-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .input-group input.valid {
+      border-color: var(--success);
+    }
+
+    .input-group input.invalid {
+      border-color: var(--danger);
+    }
+
+    .unit-selector {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: var(--gray);
+      font-size: 0.9rem;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn-container {
+      margin-top: 30px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.5px;
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--primary-dark), #4338ca);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--gray);
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      transform: translateY(-2px);
+    }
+
+    /* Result */
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+
+    .result.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .result h3 {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .result h3 i {
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+
+    .result p {
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .result .value {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .kategori-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-top: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .kategori-kecil {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .kategori-menengah {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .kategori-besar {
+      background: #fed7aa;
+      color: #9a3412;
+    }
+
+    .kategori-super {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .motor-icon {
+      color: var(--primary);
+      margin-right: 10px;
+    }
+
+    /* History Section */
+    .history-section {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .history-title {
+      font-size: 1.1rem;
+      color: var(--dark);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+
+    .history-title i {
+      margin-right: 8px;
+      color: var(--primary);
+    }
+
+    .clear-history {
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .clear-history:hover {
+      color: var(--danger);
+    }
+
+    .history-list {
+      max-height: 200px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .history-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .history-list::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 3px;
+    }
+
+    .history-list::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+
+    .history-item {
+      padding: 12px 15px;
+      background: #f8fafc;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+      border: 1px solid #f1f5f9;
+    }
+
+    .history-item:hover {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+    }
+
+    .history-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .history-item-info {
+      flex: 1;
+      font-weight: 500;
+    }
+
+    .history-item-result {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .empty-history {
+      text-align: center;
+      color: var(--gray);
+      font-style: italic;
+      padding: 20px 0;
+      font-weight: 500;
+    }
+
+    /* Error Message */
+    .error-message {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 6px;
+      display: none;
+      font-weight: 500;
+    }
+
+    .input-group.error input {
+      border-color: var(--danger);
+    }
+
+    .input-group.error .error-message {
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      width: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .card-header h1 {
+        font-size: 1.9rem;
+      }
+      
+      .card {
+        padding: 25px;
+      }
+      
+      .home-link {
+        top: 15px;
+        left: 15px;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+      
+      .home-link i {
+        font-size: 1rem;
+        margin-right: 6px;
+      }
+      
+      .btn-container {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Home Link -->
+    <a href="/" class="home-link">
+      <i class="fas fa-home"></i>
+      Beranda
+    </a>
+    
+    <div class="card">
+      <div class="card-header">
+        <h1><i class="fas fa-motorcycle motor-icon"></i>Kalkulator CC Motor</h1>
+        <p>Hitung volume mesin Anda dengan mudah</p>
+      </div>
+      <div class="card-content">
+        <div class="input-group" id="diameterGroup">
+          <label for="diameter">
+            Diameter Silinder
+            <i class="fas fa-info-circle info-icon"></i>
+            <div class="tooltip">Diameter silinder adalah ukuran lebar bagian dalam silinder motor</div>
+          </label>
+          <div class="input-wrapper">
+            <input type="number" id="diameter" placeholder="Contoh: 50">
+            <select class="unit-selector" id="diameterUnit">
+              <option value="mm">mm</option>
+              <option value="cm">cm</option>
+            </select>
+          </div>
+          <div class="error-message">Masukkan diameter yang valid</div>
+        </div>
+        <div class="input-group" id="tinggiGroup">
+          <label for="tinggi">
+            Tinggi/Stroke Silinder
+            <i class="fas fa-info-circle info-icon"></i>
+            <div class="tooltip">Tinggi langkah piston bergerak dari titik mati atas ke bawah</div>
+          </label>
+          <div class="input-wrapper">
+            <input type="number" id="tinggi" placeholder="Contoh: 56">
+            <select class="unit-selector" id="tinggiUnit">
+              <option value="mm">mm</option>
+              <option value="cm">cm</option>
+            </select>
+          </div>
+          <div class="error-message">Masukkan tinggi yang valid</div>
+        </div>
+        <div class="input-group" id="jumlahGroup">
+          <label for="jumlahSilinder">
+            Jumlah Silinder
+            <i class="fas fa-info-circle info-icon"></i>
+            <div class="tooltip">Banyaknya silinder pada motor (biasanya 1 untuk motor bebek/matic)</div>
+          </label>
+          <input type="number" id="jumlahSilinder" value="1" min="1" placeholder="Contoh: 1">
+          <div class="error-message">Masukkan jumlah silinder yang valid</div>
+        </div>
+        <div class="btn-container">
+          <button class="btn btn-primary" id="calculateBtn">
+            <i class="fas fa-calculator"></i>
+            Hitung CC Motor
+          </button>
+          <button class="btn btn-secondary" id="resetBtn">
+            <i class="fas fa-redo"></i>
+            Reset
+          </button>
+        </div>
+        <div id="result" class="result">
+          <h3><i class="fas fa-chart-line"></i>Hasil Perhitungan</h3>
+          <p>Volume Mesin: <span id="volume" class="value"></span> CC</p>
+          <p>Kategori: <span id="kategori" class="value"></span></p>
+          <div id="kategoriBadge" class="kategori-badge"></div>
+        </div>
+        
+        <!-- History Section -->
+        <div class="history-section">
+          <div class="history-title">
+            <span><i class="fas fa-history"></i> Riwayat Perhitungan</span>
+            <button class="clear-history" id="clearHistory">Hapus Semua</button>
+          </div>
+          <div class="history-list" id="historyList">
+            <div class="empty-history">Belum ada riwayat perhitungan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Kalkulator CC Motor. Dibuat dengan <i class="fas fa-heart" style="color: #ff5252;"></i> oleh <a href="https://www.instagram.com/ahmddrynnn">Ahmddrynn</a>.</p>
+  </footer>
+
+  <script>
+    // Initialize history
+    let calculationHistory = JSON.parse(localStorage.getItem('ccCalcHistory')) || [];
+    
+    // Update history display
+    function updateHistoryDisplay() {
+      const historyList = document.getElementById('historyList');
+      
+      if (calculationHistory.length === 0) {
+        historyList.innerHTML = '<div class="empty-history">Belum ada riwayat perhitungan</div>';
+        return;
+      }
+      
+      historyList.innerHTML = '';
+      calculationHistory.slice().reverse().forEach(item => {
+        const historyItem = document.createElement('div');
+        historyItem.className = 'history-item';
+        historyItem.innerHTML = `
+          <div class="history-item-info">
+            Ø${item.diameter}${item.diameterUnit} × ${item.tinggi}${item.tinggiUnit} × ${item.jumlahSilinder}
+          </div>
+          <div class="history-item-result">${item.volume} CC</div>
+        `;
+        historyList.appendChild(historyItem);
+      });
+    }
+
+    // Save to history
+    function saveToHistory(diameter, diameterUnit, tinggi, tinggiUnit, jumlahSilinder, volume) {
+      const historyItem = {
+        diameter,
+        diameterUnit,
+        tinggi,
+        tinggiUnit,
+        jumlahSilinder,
+        volume,
+        timestamp: new Date().toISOString()
+      };
+      
+      calculationHistory.push(historyItem);
+      
+      // Limit history to max 10 items
+      if (calculationHistory.length > 10) {
+        calculationHistory = calculationHistory.slice(-10);
+      }
+      
+      localStorage.setItem('ccCalcHistory', JSON.stringify(calculationHistory));
+      updateHistoryDisplay();
+    }
+
+    // Real-time validation
+    function setupRealTimeValidation() {
+      const inputs = document.querySelectorAll('input[type="number"]');
+      
+      inputs.forEach(input => {
+        input.addEventListener('input', function() {
+          const value = parseFloat(this.value);
+          
+          if (isNaN(value) || value <= 0) {
+            this.classList.remove('valid');
+            this.classList.add('invalid');
+          } else {
+            this.classList.remove('invalid');
+            this.classList.add('valid');
+          }
+          
+          // Remove error state if filled
+          if (this.value) {
+            this.parentElement.parentElement.classList.remove('error');
+          }
+        });
+      });
+    }
+
+    // Unit conversion
+    function convertToMm(value, unit) {
+      if (unit === 'cm') {
+        return value * 10; // 1 cm = 10 mm
+      }
+      return value; // already in mm
+    }
+
+    // Validate inputs
+    function validateInputs() {
+      let isValid = true;
+      
+      // Reset error states
+      document.querySelectorAll('.input-group').forEach(group => {
+        group.classList.remove('error');
+      });
+      
+      const diameter = parseFloat(document.getElementById('diameter').value);
+      const tinggi = parseFloat(document.getElementById('tinggi').value);
+      const jumlahSilinder = parseFloat(document.getElementById('jumlahSilinder').value);
+      
+      if (isNaN(diameter) || diameter <= 0) {
+        document.getElementById('diameterGroup').classList.add('error');
+        isValid = false;
+      }
+      
+      if (isNaN(tinggi) || tinggi <= 0) {
+        document.getElementById('tinggiGroup').classList.add('error');
+        isValid = false;
+      }
+      
+      if (isNaN(jumlahSilinder) || jumlahSilinder <= 0) {
+        document.getElementById('jumlahGroup').classList.add('error');
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+
+    // Calculate CC
+    function hitungCC() {
+      if (!validateInputs()) {
+        return;
+      }
+
+      const diameter = parseFloat(document.getElementById('diameter').value);
+      const diameterUnit = document.getElementById('diameterUnit').value;
+      const tinggi = parseFloat(document.getElementById('tinggi').value);
+      const tinggiUnit = document.getElementById('tinggiUnit').value;
+      const jumlahSilinder = parseFloat(document.getElementById('jumlahSilinder').value);
+
+      // Convert to mm if needed
+      const diameterMm = convertToMm(diameter, diameterUnit);
+      const tinggiMm = convertToMm(tinggi, tinggiUnit);
+
+      const volume = Math.PI * Math.pow(diameterMm / 2, 2) * tinggiMm * jumlahSilinder;
+      const volumeCC = (volume / 1000).toFixed(1);
+
+      let kategori, kategoriClass;
+      if (volumeCC <= 150) {
+        kategori = 'Motor Kecil';
+        kategoriClass = 'kategori-kecil';
+      } else if (volumeCC <= 250) {
+        kategori = 'Motor Menengah';
+        kategoriClass = 'kategori-menengah';
+      } else if (volumeCC <= 500) {
+        kategori = 'Motor Besar';
+        kategoriClass = 'kategori-besar';
+      } else {
+        kategori = 'Motor Super';
+        kategoriClass = 'kategori-super';
+      }
+
+      document.getElementById('volume').innerText = volumeCC;
+      document.getElementById('kategori').innerText = kategori;
+      
+      const badge = document.getElementById('kategoriBadge');
+      badge.innerText = kategori;
+      badge.className = 'kategori-badge ' + kategoriClass;
+      
+      // Show result with animation
+      const resultDiv = document.getElementById('result');
+      resultDiv.style.display = 'block';
+      setTimeout(() => {
+        resultDiv.classList.add('show');
+      }, 10);
+      
+      // Save to history
+      saveToHistory(diameter, diameterUnit, tinggi, tinggiUnit, jumlahSilinder, volumeCC);
+    }
+
+    // Reset form
+    function resetForm() {
+      document.getElementById('diameter').value = '';
+      document.getElementById('tinggi').value = '';
+      document.getElementById('jumlahSilinder').value = '1';
+      document.getElementById('diameterUnit').value = 'mm';
+      document.getElementById('tinggiUnit').value = 'mm';
+      
+      // Reset validation states
+      document.querySelectorAll('input').forEach(input => {
+        input.classList.remove('valid', 'invalid');
+      });
+      
+      document.querySelectorAll('.input-group').forEach(group => {
+        group.classList.remove('error');
+      });
+      
+      // Hide result
+      const resultDiv = document.getElementById('result');
+      resultDiv.classList.remove('show');
+      setTimeout(() => {
+        resultDiv.style.display = 'none';
+      }, 500);
+    }
+
+    // Clear history
+    function clearHistory() {
+      if (confirm('Apakah Anda yakin ingin menghapus semua riwayat?')) {
+        calculationHistory = [];
+        localStorage.removeItem('ccCalcHistory');
+        updateHistoryDisplay();
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      const calculateBtn = document.getElementById('calculateBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const clearHistoryBtn = document.getElementById('clearHistory');
+      
+      calculateBtn.addEventListener('click', hitungCC);
+      resetBtn.addEventListener('click', resetForm);
+      clearHistoryBtn.addEventListener('click', clearHistory);
+      
+      // Setup real-time validation
+      setupRealTimeValidation();
+      
+      // Display history
+      updateHistoryDisplay();
+    });
+  </script>
+</body>
+</html>
