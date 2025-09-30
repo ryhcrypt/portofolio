@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmad Riyan Hadi Setiawan - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom styles for enhanced hero section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 120px 0 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234f46e5' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.8;
+            z-index: 0;
+        }
+        
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: #818cf8;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+        
+        .title-line {
+            display: block;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: block;
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% auto;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            max-width: 560px;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            transform: translateX(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            top: -50px;
+            right: 100px;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ec4899, #f43f5e);
+            bottom: -50px;
+            right: 200px;
+            animation-delay: 1s;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa);
+            top: 50%;
+            left: 50px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .hero-icon {
+            position: absolute;
+            font-size: 180px;
+            color: rgba(255, 255, 255, 0.05);
+            z-index: 0;
+        }
+        
+        .icon-motorcycle {
+            top: 20%;
+            right: 10%;
+            transform: rotate(15deg);
+        }
+        
+        .icon-code {
+            bottom: 20%;
+            left: 15%;
+            transform: rotate(-10deg);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-actions {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                width: 100%;
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span>ARHS</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#about" class="nav-link">Tentang</a></li>
+                <li><a href="#skills" class="nav-link">Keahlian</a></li>
+                <li><a href="#hobbies" class="nav-link">Hobi</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                
+                <h1 class="hero-title">
+                    <span class="title-line">Halo, Saya</span>
+                    <span class="gradient-text">Ahmad Riyan</span>
+                    <span class="gradient-text">Hadi Setiawan</span>
+                </h1>
+                <p class="hero-description">
+                    Spesialis kendaraan tua dengan keahlian otodidak di bidang mekanik otomotif klasik, pengembangan software, 
+                    produksi konten, dan pertanian modern. Berbasis di Tulungagung, Indonesia.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i>
+                        Hubungi Saya
+                    </a>
+                    <a href="#skills" class="btn btn-secondary">
+                        <i class="fas fa-bolt" style="margin-right: 8px;"></i>
+                        Lihat Keahlian
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+                <i class="fas fa-motorcycle hero-icon icon-motorcycle"></i>
+                <i class="fas fa-code hero-icon icon-code"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tentang Saya</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Saya adalah Ahmad Riyan Hadi Setiawan, seorang yang lahir pada 1 Oktober 2004 di Tulungagung, Jawa Timur. 
+                        Semua keahlian yang saya miliki diperoleh secara otodidak melalui pengalaman langsung, eksperimen, dan pembelajaran mandiri.
+                    </p>
+                    <p>
+                        Sebagai spesialis kendaraan tua, saya memiliki keahlian khusus dalam restorasi dan perbaikan motor klasik. 
+                        Saya menghabiskan waktu bertahun-tahun mempelajari mekanika otomotif secara praktis, bukan melalui pendidikan formal.
+                    </p>
+                    <p>
+                        Di bidang teknologi, saya menguasai pengembangan web melalui kursus online dan proyek-proyek pribadi. 
+                        Saya juga memiliki keahlian dalam produksi konten digital yang saya kembangkan sendiri melalui praktik langsung.
+                    </p>
+                </div>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <i class="fas fa-book-reader"></i>
+                        <div>
+                            <h4>Pendidikan</h4>
+                            <p>Otodidak & Pengalaman Praktis</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-certificate"></i>
+                        <div>
+                            <h4>Sertifikasi</h4>
+                            <p>Sertifikat Kursus Online & Praktik</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h4>Pengalaman</h4>
+                            <p>5+ Tahun Praktik Langsung</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Lokasi</h4>
+                            <p>Tulungagung, Jawa Timur, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <h4>Bahasa</h4>
+                            <p>Indonesia, Inggris (Menengah)</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <h4>Minat</h4>
+                            <p>Kendaraan Klasik, Teknologi, Pertanian</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Keahlian Saya</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="skills-wrapper">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Spesialis Kendaraan Tua</h3>
+                    <p>Ahli restorasi motor klasik, perbaikan mesin tua, dan modifikasi</p>
+                    <div class="skill-details">
+                        <div class="skill-item">
+                            <span>Restorasi Klasik</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Perbaikan Mesin Tua</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Modifikasi</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Pengembangan Software</h3>
+                    <p>Pengembangan teknologi web modern (dipelajari secara otodidak)</p>
+                    <div class="skill-details">
+                        
+                        <div class="skill-item">
+                            <span>Backend (Node.js, Python)</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Database & Cloud</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Produksi Konten</h3>
+                    <p>Editing video dan foto untuk berbagai keperluan (dipelajari secara otodidak)</p>
+                    <div class="skill-details">
+                        <div class="skill-item">
+                            <span>Video Editing</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Photo Editing</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Pertanian Modern</h3>
+                    <p>Teknik budi daya tanaman dengan teknologi terkini (dipelajari secara otodidak)</p>
+                    <div class="skill-details">
+                        <div class="skill-item">
+                            <span>Budi Daya Sayuran</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Pengelolaan Lahan</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Pemasaran Hasil</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section class="hobbies section" id="hobbies">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hobi & Minat</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="hobbies-container">
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Touring Motor Klasik</h3>
+                    <p>Menjelajahi berbagai destinasi di Indonesia dengan motor klasik. Sudah mengunjungi lebih dari 15 kota dan menempuh jarak lebih dari 5.000 km.</p>
+                    <div class="hobby-stats">
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Kota Dikunjungi</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5000+</span>
+                            <span class="stat-label">KM Ditempuh</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Koleksi Kendaraan Tua</h3>
+                    <p>Mengoleksi dan merestorasi kendaraan tua. Aktif dalam komunitas pecinta kendaraan klasik dan antik.</p>
+                    <div class="hobby-stats">
+                        <div class="stat">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Kendaraan Dikoleksi</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hubungi Saya</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Mari Berkolaborasi</h3>
+                    <p>Saya selalu terbuka untuk peluang kerja freelance, proyek kolaborasi, atau diskusi tentang kendaraan klasik dan teknologi. Jangan ragu untuk menghubungi saya.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>novaraparts@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Telepon</h4>
+                                <p>081533334573</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Alamat</h4>
+                                <p>Tulungagung, Jawa Timur, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Waktu Kerja</h4>
+                                <p>Senin - Minggu: 09:00 - 17:00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>ARHS</span>
+                </div>
+                <div class="footer-info">
+                    <p>&copy; 2024 Ahmad Riyan Hadi Setiawan. All rights reserved.</p>
+                    <p>Dibuat dengan <i class="fas fa-heart"></i> di Tulungagung</p>
+                </div>
+                <div class="footer-social">
+                    
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
