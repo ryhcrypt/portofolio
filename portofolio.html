@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmad Riyan Hadi Setiawan - Spesialis Kendaraan Klasik & Pengembang Web</title>
+    <meta name="description" content="Ahmad Riyan Hadi Setiawan - Spesialis restorasi kendaraan klasik, pengembang web, dan content creator berbasis di Tulungagung, Jawa Timur.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span>A</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Tentang</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#works" class="nav-link">Karya</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#hobbies" class="nav-link">Hobi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Kontak</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-greeting">Halo, saya</span>
+                    <span class="hero-name">Ahmad Riyan</span>
+                    <span class="hero-name">Hadi Setiawan</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="typing-text">Spesialis Kendaraan Klasik</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#works" class="btn btn-primary">Jelajahi Karya Saya</a>
+                    <a href="#about" class="btn btn-outline">Kenali Saya Lebih Dekat</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-container">
+                    <div class="hero-image-bg"></div>
+                    <div class="hero-image-overlay"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Tentang Saya</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-image-container">
+                        <div class="about-image-bg"></div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Saya adalah Ahmad Riyan Hadi Setiawan, seorang profesional multidisiplin yang lahir pada 1 Oktober 2004 di Tulungagung, Jawa Timur. 
+                        Dengan semangat autodidak yang tinggi, saya telah mengembangkan berbagai keahlian melalui pengalaman langsung dan pembelajaran mandiri tanpa batas.
+                    </p>
+                    <p>
+                        Sebagai spesialis kendaraan klasik, saya memiliki keahlian teknis dalam restorasi, modifikasi, dan perawatan motor klasik. 
+                        Setiap proyek yang saya kerjakan mencerminkan dedikasi terhadap keaslian, kualitas, dan detail yang presisi. 
+                        Saya menghabiskan bertahun-tahun mempelajari mekanika otomotif secara praktis, menggabungkan pengetahuan klasik dengan inovasi modern.
+                    </p>
+                    <p>
+                        Di bidang teknologi digital, saya menguasai pengembangan web melalui berbagai kursus online dan proyek-proyek pribadi yang menantang. 
+                        Kemampuan saya mencakup desain UI/UX, pengembangan front-end, dan implementasi solusi teknis yang efisien. 
+                        Selain itu, saya memiliki keahlian dalam produksi konten digital yang telah saya kembangkan melalui praktik langsung dan eksperimen kreatif.
+                    </p>
+                    <div class="about-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Lokasi</h4>
+                                <p>Tulungagung, Jawa Timur</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Tanggal Lahir</h4>
+                                <p>1 Oktober 2004</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section id="works" class="works section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Portfolio Karya</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="works-filter">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="motor">Motor Klasik</button>
+                <button class="filter-btn" data-filter="web">Pengembangan Web</button>
+                <button class="filter-btn" data-filter="content">Produksi Konten</button>
+                <button class="filter-btn" data-filter="farming">Pertanian</button>
+            </div>
+            <div class="works-grid">
+                <div class="work-item" data-category="motor">
+                    <div class="work-image">
+                        <div class="work-image-bg" style="background-image: url('https://images.unsplash.com/photo-1558981286-6f05ce57feba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                        <div class="work-overlay">
+                            <div class="work-content">
+                                <h3>Restorasi Mesin Honda Astrea Grand</h3>
+                                <p>Restorasi Total Mesin Honda Grand Memaksimalkan performa nya tetapi tetap mempertahankan durabilitas nya</p>
+                                <a href="#" class="work-link">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="web">
+                    <div class="work-image">
+                        <div class="work-image-bg" style="background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                        <div class="work-overlay">
+                            <div class="work-content">
+                                <h3>Kalkulator CC motor</h3>
+                                <p>Kalkulator online untuk estimasi performa dan kapasitas mesin motor berdasarkan spesifikasi.</p>
+                                <a href="#" class="work-link">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="content">
+                    <div class="work-image">
+                        <div class="work-image-bg" style="background-image: url('https://images.unsplash.com/photo-1574717024453-354056aafa98?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+                        <div class="work-overlay">
+                            <div class="work-content">
+                                <h3>Dokumenter "Jelajah Nusantara"</h3>
+                                <p>Seri dokumenter perjalanan touring Jawa-Bali dengan fokus pada budaya lokal dan komunitas motor klasik</p>
+                                <a href="#" class="work-link">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-item" data-category="farming">
+                    <div class="work-image">
+                        <div class="work-image-bg" style="background-image: url('https://raw.githubusercontent.com/ryhcrypt/portofolio/refs/heads/main/image/file_00000000f698622f96e4a98e5fb160b5.png')"></div>
+                        <div class="work-overlay">
+                            <div class="work-content">
+                                <h3>Penelitian Pertanian Cabai Skala Kecil</h3>
+                                <p>Eksperimen tanaman cabai di lahan terbatas dengan fokus pada teknik irigasi, pupuk, dan pengendalian hama alami.</p>
+                                <a href="#" class="work-link">Lihat Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="hobbies section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Minat & Aktivitas</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="hobbies-container">
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Wisata Motor Klasik</h3>
+                    <p>Menjelajahi keindahan Indonesia dengan motor klasik, menggabungkan passion terhadap otomotif dengan petualangan. Setiap perjalanan adalah kesempatan untuk mendokumentasikan budaya lokal dan memperluas jaringan komunitas pecinta motor klasik di seluruh nusantara.</p>
+                    <div class="hobby-stats">
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Kota</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">5000+</span>
+                            <span class="stat-label">KM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Konservasi Kendaraan Historis</h3>
+                    <p>Mengoleksi, merestorasi, dan melestarikan kendaraan klasik sebagai bagian dari warisan otomotif Indonesia. Aktif terlibat dalam komunitas untuk berbagi pengetahuan tentang teknik restorasi otentik dan sejarah di balik setiap unit koleksi.</p>
+                    <div class="hobby-stats">
+                        <div class="stat">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Kendaraan</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hubungi Saya</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Mari Berkolaborasi</h3>
+                    <p>Saya selalu terbuka untuk peluang kolaborasi dalam proyek restorasi kendaraan klasik, pengembangan web, atau produksi konten. Jangan ragu untuk menghubungi saya jika Anda memiliki pertanyaan atau ingin mendiskusikan ide-ide menarik.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>novaraparts@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Telepon</h4>
+                                <p>081533334573</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Lokasi</h4>
+                                <p>Tulungagung, Jawa Timur</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://facebook.com/ahmadriyanhs" target="_blank" class="social-link facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/ahmadriyanhs" target="_blank" class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/6281533334573" target="_blank" class="social-link whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>A</span>
+                </div>
+                <div class="footer-text">
+                    <p>&copy; 2024 Ahmad Riyan Hadi Setiawan. Hak Cipta Dilindungi.</p>
+                    <p>Dibuat dengan <i class="fas fa-heart"></i> di Tulungagung, Jawa Timur</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://facebook.com/ahmadriyanhs" target="_blank" class="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/ahmadriyanhs" target="_blank" class="instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/6281533334573" target="_blank" class="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
